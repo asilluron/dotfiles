@@ -1,19 +1,18 @@
 #!/usr/bin/env zsh
 
-curr="~"
 
 # Load main files.
 # echo "Load start\t" $(gdate "+%s-%N")
-source "$curr/terminal/startup.sh"
-# echo "$curr/terminal/startup.sh"
-source "$curr/terminal/completion.sh"
-source "$curr/terminal/highlight.sh"
+source "$HOME/terminal/startup.sh"
+# echo "$HOME/terminal/startup.sh"
+source "$HOME/terminal/completion.sh"
+source "$HOME/terminal/highlight.sh"
 # echo "Load end\t" $(gdate "+%s-%N")
 
 autoload -U colors && colors
 
 # Load and execute the prompt theming system.
-fpath=("$curr/terminal" $fpath)
+fpath=("$HOME/terminal" $fpath)
 autoload -Uz promptinit && promptinit
 prompt 'silluron'
 
