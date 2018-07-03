@@ -15,6 +15,7 @@ function doIt() {
 	source ~/.bash_profile;
 }
 
+
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
 else
@@ -25,3 +26,26 @@ else
 	fi;
 fi;
 unset doIt;
+
+# If we on macOS, install homebrew and tweak system a bit.
+if [[ `uname` == 'Darwin' ]]; then
+  which -s brew
+  if [[ $? != 0 ]]; then
+    echo 'Installing Homebrew...'
+      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      brew update
+      brew install htop mysql node ruby wget trash
+  fi
+
+  # echo 'Tweaking macOS...'
+    # source 'etc/macos.sh'
+
+  # https://github.com/sindresorhus/quick-look-plugins
+  echo 'Installing Quick Look plugins...'
+    brew tap phinze/homebrew-cask
+    brew install caskroom/cask/brew-cask
+    brew cask install suspicious-package quicklook-json qlmarkdown qlstephen qlcolorcode
+fi
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
