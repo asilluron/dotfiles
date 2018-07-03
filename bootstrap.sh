@@ -5,6 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
+	echo "DOING IT";
 	rsync --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
@@ -38,7 +39,7 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   # echo 'Tweaking macOS...'
-    # source 'etc/macos.sh'
+ source 'etc/macos.sh'
 
   # https://github.com/sindresorhus/quick-look-plugins
   echo 'Installing Quick Look plugins...'

@@ -52,7 +52,6 @@ typeset -gUT INFOPATH infopath
 # Commonly used directories.
 dev="$HOME/Developer"
 br="$dev/brunch"
-ch="$dev/chaplinjs"
 com="$dev/com"
 pm="$dev/personal"
 as="$HOME/Library/Application Support"
