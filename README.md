@@ -90,6 +90,11 @@ Suggestions/improvements
 
 ## Author
 
+| [![twitter/mathias](http://gravatar.com/avatar/eef38319740672bab125a6f1ce58226c?s=70)](http://twitter.com/silluron "Follow @mathias on Twitter") |
+|---|
+| [Andrew Silluron](https://silluron.com/) |
+
+
 | [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
 |---|
 | [Mathias Bynens](https://mathiasbynens.be/) |
