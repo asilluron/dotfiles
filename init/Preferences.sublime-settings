@@ -1,10 +1,10 @@
 {
-	"theme": "Sodarized Light 3.sublime-theme",
-  	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
+	"theme": "Agila Origin.sublime-theme",
+  "color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 	"default_encoding": "UTF-8",
 	"default_line_ending": "unix",
 	"detect_indentation": false,
-	"draw_white_space": "all",
+	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": false,
 	"file_exclude_patterns":
 	[
@@ -18,8 +18,7 @@
 	],
 	"folder_exclude_patterns":
 	[
-		".git",
-		"node_modules"
+		".git"
 	],
 	"font_face": "Monaco",
 	"font_size": 13,

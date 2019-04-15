@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-git pull origin master;
+#git pull origin master;
 
 function doIt() {
 	echo "DOING IT";
@@ -17,16 +17,7 @@ function doIt() {
 }
 
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
-else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
-fi;
-unset doIt;
+doIt;
 
 # If we on macOS, install homebrew and tweak system a bit.
 if [[ `uname` == 'Darwin' ]]; then
@@ -39,7 +30,7 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   # echo 'Tweaking macOS...'
- source 'etc/macos.sh'
+ #source 'etc/macos.sh'
 
   # https://github.com/sindresorhus/quick-look-plugins
   echo 'Installing Quick Look plugins...'

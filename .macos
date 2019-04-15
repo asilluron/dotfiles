@@ -28,11 +28,11 @@ sudo pmset -a standbydelay 86400
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
-# Disable transparency in the menu bar and elsewhere on Yosemite
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# enable transparency in the menu bar and elsewhere on Yosemite
+defaults write com.apple.universalaccess reduceTransparency -bool false
 
 # Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+# defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -133,13 +133,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable hibernation (speeds up entering sleep mode)
 sudo pmset -a hibernatemode 0
 
-# Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
-
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
@@ -175,22 +168,19 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+defaults write NSGlobalDomain AppleLanguages -array "en"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Show language menu in the top right corner of the boot screen
-sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
-
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
+sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool false
 
 # Stop iTunes from responding to the keyboard media keys
 #launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -203,11 +193,8 @@ sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "${HOME}/Desktop"
-
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture type -string "jpg"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
@@ -232,7 +219,7 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Documents/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -323,10 +310,6 @@ chflags nohidden ~/Library
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
 
-# Remove Dropbox’s green checkmark icons in Finder
-file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
-
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -342,7 +325,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.dock tilesize -int 70
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -389,7 +372,7 @@ defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0
 
 # Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide -bool false
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
@@ -404,7 +387,7 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
 sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
 
-# Add Sublime subl command line 
+# Add Sublime subl command line
 ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 
 
@@ -611,7 +594,7 @@ tell application "Terminal"
 	local allOpenedWindows
 	local initialOpenedWindows
 	local windowID
-	set themeName to "Solarized Dark xterm-256color"
+	set themeName to "asilluron"
 
 	(* Store the IDs of all the open terminal windows. *)
 	set initialOpenedWindows to id of every window
@@ -619,7 +602,7 @@ tell application "Terminal"
 	(* Open the custom theme so that it gets added to the list
 	   of available terminal themes (note: this will open two
 	   additional terminal windows). *)
-	do shell script "open '$HOME/init/" & themeName & ".terminal'"
+	do shell script "open '$HOME/terminal/" & themeName & ".terminal'"
 
 	(* Wait a little bit to ensure that the custom theme is added. *)
 	delay 1
@@ -661,12 +644,6 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
-
-# Install the Solarized Dark theme for iTerm
-open "${HOME}/init/Solarized Dark.itermcolors"
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
 # Time Machine                                                                #
@@ -776,9 +753,9 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
-# Disable the all too sensitive backswipe on trackpads
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+# Enable the all too sensitive backswipe on trackpads
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool true
 
 # Disable the all too sensitive backswipe on Magic Mouse
 defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false

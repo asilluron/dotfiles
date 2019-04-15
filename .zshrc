@@ -14,7 +14,7 @@ autoload -U colors && colors
 # Load and execute the prompt theming system.
 fpath=("$HOME/terminal" $fpath)
 autoload -Uz promptinit && promptinit
-prompt 'silluron'
+prompt 'asilluron'
 
 # ==================================================================
 # = Aliases =
@@ -192,6 +192,7 @@ alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 
 # ==================================================================
 # = Functions =
