@@ -26,7 +26,6 @@ Thumbs.db
 .svn
 
 # Node.js package manager
-/bower_components
 /node_modules
 /npm-debug.log
 
