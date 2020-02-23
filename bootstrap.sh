@@ -13,6 +13,8 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
+  cd ~;
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git terminal;
 	source ~/.bash_profile;
 }
 
@@ -30,7 +32,7 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   # echo 'Tweaking macOS...'
- #source 'etc/macos.sh'
+ source '.macos'
 
   # https://github.com/sindresorhus/quick-look-plugins
   echo 'Installing Quick Look plugins...'
