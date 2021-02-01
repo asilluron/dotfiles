@@ -20,6 +20,21 @@ if [[ -z "$LANG" ]]; then
   eval "$(locale)"
 fi
 
+# GOLang Path
+# ---------
+export GOPATH=~/go
+export PATH=${GOPATH//://bin:}/bin:$PATH
+
+# Pyenv
+# ---------
+export PATH=$HOME/.pyenv/bin/:$PATH
+# version in the path may be different depending on which is installed
+export PATH=$HOME/.pyenv/versions/3.7.2/bin:$PATH
+
+# OpenSSL
+# --------
+export PATH=/usr/local/opt/openssl/bin:$PATH
+
 # Git log colors.
 zstyle -s ':prezto:module:git:log:medium' format '_git_log_medium_format' \
   || _git_log_medium_format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
@@ -110,3 +125,6 @@ BROWSER=''
 unset BROWSER
 
 export NODE_PATH='/usr/local/lib/node_modules'
+
+export LD_LIBRARY_PATH=/usr/local/lib
+export LIBRARY_PATH=/usr/local/lib

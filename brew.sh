@@ -40,6 +40,7 @@ brew install gnupg
 brew install vim --with-override-system-vi
 brew install grep
 brew install openssh
+brew install openssl
 brew install screen
 brew install homebrew/php/php56 --with-gmp
 
@@ -92,6 +93,17 @@ brew install ssh-copy-id
 brew install tree
 brew install vbindiff
 brew install zopfli
+brew install httpie
+brew install jq
+brew install go
+brew install cmake
+brew install zeromq
+brew install readline
+brew install pkg-config
+brew install libsodium
+brew install boost
+brew install postgresql
+brew install pyenv
 
 # Remove outdated versions from the cellar.
 brew cleanup
